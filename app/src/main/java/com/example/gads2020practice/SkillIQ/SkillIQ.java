@@ -1,4 +1,4 @@
-package com.example.gads2020practice;
+package com.example.gads2020practice.SkillIQ;
 
 import com.google.gson.annotations.SerializedName;
 

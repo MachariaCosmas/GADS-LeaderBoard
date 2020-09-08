@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.gads2020practice.Frag1;
-import com.example.gads2020practice.Frag2;
+import com.example.gads2020practice.LearningHours.Frag1;
+import com.example.gads2020practice.SkillIQ.Frag2;
 import com.example.gads2020practice.R;
 
 /**

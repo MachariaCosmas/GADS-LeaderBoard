@@ -1,4 +1,4 @@
-package com.example.gads2020practice;
+package com.example.gads2020practice.LearningHours;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gads2020practice.JsonPlaceHolderApi;
+import com.example.gads2020practice.R;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,29 +24,31 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Frag2 extends Fragment {
-    private RecyclerView frag2_list;
-    private Frag2Adapter mFrag2Adapter;
+public class Frag1 extends Fragment {
+    private TextView frag1Result;
+    private RecyclerView frag1_list;
+    private Frag1Adapter mFrag1Adapter;
     private JsonPlaceHolderApi jsonPlaceHolderApi;
 
     private ProgressBar progressBar;
 
-    private List<SkillIQ> IQLists;
+    private List<WatchHours> hourLists;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View v = inflater.inflate(R.layout.frag2_layout, container, false);
+        View v = inflater.inflate(R.layout.frag1_layout, container, false);
 
 
-        frag2_list = v.findViewById(R.id.frag2_list);
-        frag2_list.setHasFixedSize(true);
-        frag2_list.setLayoutManager(new LinearLayoutManager(v.getContext()));
+        frag1_list = v.findViewById(R.id.frag1_list);
+        frag1_list.setHasFixedSize(true);
+        frag1_list.setLayoutManager(new LinearLayoutManager(v.getContext()));
        // frag1_list.setAdapter(mFrag1Adapter);
 
-        progressBar=v.findViewById(R.id.progressBar);
+
+        progressBar=v.findViewById(R.id.progressBar);/////////////
 
         //instance of retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -53,20 +58,21 @@ public class Frag2 extends Fragment {
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
 
-            Call<List<SkillIQ>> call = jsonPlaceHolderApi.getSkillList();
+            Call<List<WatchHours>> call = jsonPlaceHolderApi.getHourList();
 
-             call.enqueue(new Callback<List<SkillIQ>>() {
+             call.enqueue(new Callback<List<WatchHours>>() {
                     @Override
-                    public void onResponse(Call<List<SkillIQ>> call, Response<List<SkillIQ>> response) {
-                        IQLists=response.body();
-                        mFrag2Adapter=new Frag2Adapter(IQLists, Frag2.this);
-                        frag2_list.setAdapter(mFrag2Adapter);
+                    public void onResponse(Call<List<WatchHours>> call, Response<List<WatchHours>> response) {
+                        hourLists=response.body();
+                        mFrag1Adapter=new Frag1Adapter(hourLists,Frag1.this);
+                        frag1_list.setAdapter(mFrag1Adapter);
+
                         progressBar.setVisibility(View.INVISIBLE);
 
                     }
 
                     @Override
-                    public void onFailure(Call<List<SkillIQ>> call, Throwable t) {
+                    public void onFailure(Call<List<WatchHours>> call, Throwable t) {
 
                     }
                 });

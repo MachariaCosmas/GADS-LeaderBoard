@@ -1,4 +1,4 @@
-package com.example.gads2020practice;
+package com.example.gads2020practice.LearningHours;
 
 public class WatchHours {
     private String name;

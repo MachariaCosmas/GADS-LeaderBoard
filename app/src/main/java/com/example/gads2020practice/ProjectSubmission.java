@@ -172,7 +172,7 @@ public class ProjectSubmission extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
-                    github_link.setText("Code: " + response.code());
+                    Log.d("ProjectSubmission",String.valueOf(response.code()));
                     failDialog();//if fail then display fail dialog
                     return;
                 }
@@ -182,7 +182,8 @@ public class ProjectSubmission extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                github_link.setText(t.getMessage());
+                failDialog();
+                Log.d("ProjectSubmission",String.valueOf(t.getMessage()));
             }
         });
     }
